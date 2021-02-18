@@ -1,8 +1,26 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F1256 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h
-[v __delay `JF1256 ~T0 @X0 0 e ]
-[p i __delay ]
+"1608 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1608:     struct {
+[s S59 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S59 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"1607
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1607: typedef union {
+[u S58 `S59 1 ]
+[n S58 . . ]
+"1619
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1619: extern volatile TRISDbits_t TRISDbits __attribute__((address(0x088)));
+[v _TRISDbits `VS58 ~T0 @X0 0 e@136 ]
+"358
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 358:     struct {
+[s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S12 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"357
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 357: typedef union {
+[u S11 `S12 1 ]
+[n S11 . . ]
+"369
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 369: extern volatile PORTDbits_t PORTDbits __attribute__((address(0x008)));
+[v _PORTDbits `VS11 ~T0 @X0 0 e@8 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -261,41 +279,143 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V = BOR40V ]
 "19
 [p x WRT = OFF ]
-"5 delay.c
-[; ;delay.c: 5: void delay(unsigned int t )
-[v _delay `(v ~T0 @X0 1 ef1`ui ]
-"7
-[; ;delay.c: 7: {
-{
-[e :U _delay ]
-"5
-[; ;delay.c: 5: void delay(unsigned int t )
-[v _t `ui ~T0 @X0 1 r1 ]
-"7
-[; ;delay.c: 7: {
-[f ]
-"8
-[; ;delay.c: 8:     while ( t )
-[e $U 139  ]
-[e :U 140 ]
-"9
-[; ;delay.c: 9:     {
-{
-"10
-[; ;delay.c: 10:         _delay((unsigned long)((1)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"10 contatoresebotoes.c
+[; ;contatoresebotoes.c: 10: void botoes_init (void)
+[v _botoes_init `(v ~T0 @X0 1 ef ]
 "11
-[; ;delay.c: 11:         --t;
-[e =- _t -> -> 1 `i `ui ]
+[; ;contatoresebotoes.c: 11: {
+{
+[e :U _botoes_init ]
+[f ]
 "12
-[; ;delay.c: 12:     }
-}
-[e :U 139 ]
-"8
-[; ;delay.c: 8:     while ( t )
-[e $ != _t -> -> 0 `i `ui 140  ]
-[e :U 141 ]
+[; ;contatoresebotoes.c: 12:     TRISDbits.TRISD0 = 1;
+[e = . . _TRISDbits 0 0 -> -> 1 `i `uc ]
 "13
-[; ;delay.c: 13: }
+[; ;contatoresebotoes.c: 13:     TRISDbits.TRISD1 = 1;
+[e = . . _TRISDbits 0 1 -> -> 1 `i `uc ]
+"14
+[; ;contatoresebotoes.c: 14: }
 [e :UE 138 ]
+}
+"16
+[; ;contatoresebotoes.c: 16: void contatores_init (void)
+[v _contatores_init `(v ~T0 @X0 1 ef ]
+"17
+[; ;contatoresebotoes.c: 17: {
+{
+[e :U _contatores_init ]
+[f ]
+"18
+[; ;contatoresebotoes.c: 18:     TRISDbits.TRISD4 = 0;
+[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
+"19
+[; ;contatoresebotoes.c: 19:     TRISDbits.TRISD5 = 0;
+[e = . . _TRISDbits 0 5 -> -> 0 `i `uc ]
+"20
+[; ;contatoresebotoes.c: 20:     TRISDbits.TRISD6 = 0;
+[e = . . _TRISDbits 0 6 -> -> 0 `i `uc ]
+"21
+[; ;contatoresebotoes.c: 21:     PORTDbits.RD4 = 0;
+[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
+"22
+[; ;contatoresebotoes.c: 22:     PORTDbits.RD5 = 0;
+[e = . . _PORTDbits 0 5 -> -> 0 `i `uc ]
+"23
+[; ;contatoresebotoes.c: 23:     PORTDbits.RD6 = 0;
+[e = . . _PORTDbits 0 6 -> -> 0 `i `uc ]
+"24
+[; ;contatoresebotoes.c: 24: }
+[e :UE 139 ]
+}
+"26
+[; ;contatoresebotoes.c: 26: void k1 (int x)
+[v _k1 `(v ~T0 @X0 1 ef1`i ]
+"27
+[; ;contatoresebotoes.c: 27: {
+{
+[e :U _k1 ]
+"26
+[; ;contatoresebotoes.c: 26: void k1 (int x)
+[v _x `i ~T0 @X0 1 r1 ]
+"27
+[; ;contatoresebotoes.c: 27: {
+[f ]
+"28
+[; ;contatoresebotoes.c: 28:     PORTDbits.RD6 = x;
+[e = . . _PORTDbits 0 6 -> _x `uc ]
+"29
+[; ;contatoresebotoes.c: 29: }
+[e :UE 140 ]
+}
+"30
+[; ;contatoresebotoes.c: 30: void k2 (int x)
+[v _k2 `(v ~T0 @X0 1 ef1`i ]
+"31
+[; ;contatoresebotoes.c: 31: {
+{
+[e :U _k2 ]
+"30
+[; ;contatoresebotoes.c: 30: void k2 (int x)
+[v _x `i ~T0 @X0 1 r1 ]
+"31
+[; ;contatoresebotoes.c: 31: {
+[f ]
+"32
+[; ;contatoresebotoes.c: 32:     PORTDbits.RD5 = x;
+[e = . . _PORTDbits 0 5 -> _x `uc ]
+"33
+[; ;contatoresebotoes.c: 33: }
+[e :UE 141 ]
+}
+"34
+[; ;contatoresebotoes.c: 34: void k3 (int x)
+[v _k3 `(v ~T0 @X0 1 ef1`i ]
+"35
+[; ;contatoresebotoes.c: 35: {
+{
+[e :U _k3 ]
+"34
+[; ;contatoresebotoes.c: 34: void k3 (int x)
+[v _x `i ~T0 @X0 1 r1 ]
+"35
+[; ;contatoresebotoes.c: 35: {
+[f ]
+"36
+[; ;contatoresebotoes.c: 36:     PORTDbits.RD4 = x;
+[e = . . _PORTDbits 0 4 -> _x `uc ]
+"37
+[; ;contatoresebotoes.c: 37: }
+[e :UE 142 ]
+}
+"38
+[; ;contatoresebotoes.c: 38: int s1 (void)
+[v _s1 `(i ~T0 @X0 1 ef ]
+"39
+[; ;contatoresebotoes.c: 39: {
+{
+[e :U _s1 ]
+[f ]
+"40
+[; ;contatoresebotoes.c: 40:    return (PORTDbits.RD1);
+[e ) -> . . _PORTDbits 0 1 `i ]
+[e $UE 143  ]
+"41
+[; ;contatoresebotoes.c: 41: }
+[e :UE 143 ]
+}
+"42
+[; ;contatoresebotoes.c: 42: int s0 (void)
+[v _s0 `(i ~T0 @X0 1 ef ]
+"43
+[; ;contatoresebotoes.c: 43: {
+{
+[e :U _s0 ]
+[f ]
+"44
+[; ;contatoresebotoes.c: 44:    return (PORTDbits.RD0);
+[e ) -> . . _PORTDbits 0 0 `i ]
+[e $UE 144  ]
+"45
+[; ;contatoresebotoes.c: 45: }
+[e :UE 144 ]
 }

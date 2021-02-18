@@ -1,8 +1,53 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F1256 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h
-[v __delay `JF1256 ~T0 @X0 0 e ]
-[p i __delay ]
+[p mainexit ]
+"5 ./contatoresebotoes.h
+[; ;./contatoresebotoes.h: 5: void contatores_init (void);
+[v _contatores_init `(v ~T0 @X0 0 ef ]
+"4
+[; ;./contatoresebotoes.h: 4: void botoes_init (void);
+[v _botoes_init `(v ~T0 @X0 0 ef ]
+"9
+[; ;./contatoresebotoes.h: 9: int s1 (void);
+[v _s1 `(i ~T0 @X0 0 ef ]
+"6
+[; ;./contatoresebotoes.h: 6: void k1 (int x);
+[v _k1 `(v ~T0 @X0 0 ef1`i ]
+"7
+[; ;./contatoresebotoes.h: 7: void k2 (int x);
+[v _k2 `(v ~T0 @X0 0 ef1`i ]
+"8
+[; ;./contatoresebotoes.h: 8: void k3 (int x);
+[v _k3 `(v ~T0 @X0 0 ef1`i ]
+"4 ./delay.h
+[; ;./delay.h: 4: void delay(unsigned int t );
+[v _delay `(v ~T0 @X0 0 ef1`ui ]
+"10 ./contatoresebotoes.h
+[; ;./contatoresebotoes.h: 10: int s0 (void);
+[v _s0 `(i ~T0 @X0 0 ef ]
+"6 ./config.h
+[p x FOSC = INTRC_NOCLKOUT ]
+"7
+[p x WDTE = OFF ]
+"8
+[p x PWRTE = OFF ]
+"9
+[p x MCLRE = OFF ]
+"10
+[p x CP = OFF ]
+"11
+[p x CPD = OFF ]
+"12
+[p x BOREN = OFF ]
+"13
+[p x IESO = OFF ]
+"14
+[p x FCMEN = OFF ]
+"15
+[p x LVP = OFF ]
+"18
+[p x BOR4V = BOR40V ]
+"19
+[p x WRT = OFF ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -237,65 +282,182 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 ./config.h
-[p x FOSC = INTRC_NOCLKOUT ]
-"7
-[p x WDTE = OFF ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"7 main.c
+[; ;main.c: 7: void main (void)
+[v _main `(v ~T0 @X0 1 ef ]
 "8
-[p x PWRTE = OFF ]
-"9
-[p x MCLRE = OFF ]
-"10
-[p x CP = OFF ]
-"11
-[p x CPD = OFF ]
-"12
-[p x BOREN = OFF ]
-"13
-[p x IESO = OFF ]
-"14
-[p x FCMEN = OFF ]
-"15
-[p x LVP = OFF ]
-"18
-[p x BOR4V = BOR40V ]
-"19
-[p x WRT = OFF ]
-"5 delay.c
-[; ;delay.c: 5: void delay(unsigned int t )
-[v _delay `(v ~T0 @X0 1 ef1`ui ]
-"7
-[; ;delay.c: 7: {
+[; ;main.c: 8: {
 {
-[e :U _delay ]
-"5
-[; ;delay.c: 5: void delay(unsigned int t )
-[v _t `ui ~T0 @X0 1 r1 ]
-"7
-[; ;delay.c: 7: {
+[e :U _main ]
 [f ]
-"8
-[; ;delay.c: 8:     while ( t )
-[e $U 139  ]
-[e :U 140 ]
 "9
-[; ;delay.c: 9:     {
-{
+[; ;main.c: 9:     int estado = 0;
+[v _estado `i ~T0 @X0 1 a ]
+[e = _estado -> 0 `i ]
 "10
-[; ;delay.c: 10:         _delay((unsigned long)((1)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;main.c: 10:     int t;
+[v _t `i ~T0 @X0 1 a ]
 "11
-[; ;delay.c: 11:         --t;
-[e =- _t -> -> 1 `i `ui ]
+[; ;main.c: 11:     while( 1 )
+[e :U 140 ]
 "12
-[; ;delay.c: 12:     }
+[; ;main.c: 12:     {
+{
+"13
+[; ;main.c: 13:         switch ( estado )
+[e $U 143  ]
+"14
+[; ;main.c: 14:         {
+{
+"15
+[; ;main.c: 15:             case 0:
+[e :U 144 ]
+"17
+[; ;main.c: 17:                     estado = 1;
+[e = _estado -> 1 `i ]
+"18
+[; ;main.c: 18:                     break;
+[e $U 142  ]
+"20
+[; ;main.c: 20:             case 1:
+[e :U 145 ]
+"21
+[; ;main.c: 21:                     contatores_init();
+[e ( _contatores_init ..  ]
+"22
+[; ;main.c: 22:                     botoes_init();
+[e ( _botoes_init ..  ]
+"23
+[; ;main.c: 23:                     estado = 2;
+[e = _estado -> 2 `i ]
+"24
+[; ;main.c: 24:                     break;
+[e $U 142  ]
+"26
+[; ;main.c: 26:             case 2:
+[e :U 146 ]
+"27
+[; ;main.c: 27:                     if(s1() == 1)
+[e $ ! == ( _s1 ..  -> 1 `i 147  ]
+"28
+[; ;main.c: 28:                         estado = 3;
+[e = _estado -> 3 `i ]
+[e :U 147 ]
+"29
+[; ;main.c: 29:                     break;
+[e $U 142  ]
+"30
+[; ;main.c: 30:             case 3:
+[e :U 148 ]
+"31
+[; ;main.c: 31:                     k1(1);
+[e ( _k1 (1 -> 1 `i ]
+"32
+[; ;main.c: 32:                     k2(1);
+[e ( _k2 (1 -> 1 `i ]
+"33
+[; ;main.c: 33:                     k3(0);
+[e ( _k3 (1 -> 0 `i ]
+"34
+[; ;main.c: 34:                     estado = 4;
+[e = _estado -> 4 `i ]
+"35
+[; ;main.c: 35:                     break;
+[e $U 142  ]
+"37
+[; ;main.c: 37:             case 4:
+[e :U 149 ]
+"38
+[; ;main.c: 38:                     t = 3000;
+[e = _t -> 3000 `i ]
+"39
+[; ;main.c: 39:                     estado = 5;
+[e = _estado -> 5 `i ]
+"40
+[; ;main.c: 40:                     break;
+[e $U 142  ]
+"42
+[; ;main.c: 42:             case 5:
+[e :U 150 ]
+"43
+[; ;main.c: 43:                     delay(1);
+[e ( _delay (1 -> -> 1 `i `ui ]
+"44
+[; ;main.c: 44:                     --t;
+[e =- _t -> 1 `i ]
+"45
+[; ;main.c: 45:                     if (t <= 0)
+[e $ ! <= _t -> 0 `i 151  ]
+"46
+[; ;main.c: 46:                         estado = 6;
+[e = _estado -> 6 `i ]
+[e :U 151 ]
+"47
+[; ;main.c: 47:                     break;
+[e $U 142  ]
+"49
+[; ;main.c: 49:             case 6:
+[e :U 152 ]
+"50
+[; ;main.c: 50:                     k1(1);
+[e ( _k1 (1 -> 1 `i ]
+"51
+[; ;main.c: 51:                     k2(0);
+[e ( _k2 (1 -> 0 `i ]
+"52
+[; ;main.c: 52:                     k3(1);
+[e ( _k3 (1 -> 1 `i ]
+"53
+[; ;main.c: 53:                     if (s0() ==1)
+[e $ ! == ( _s0 ..  -> 1 `i 153  ]
+"54
+[; ;main.c: 54:                         estado = 7;
+[e = _estado -> 7 `i ]
+[e :U 153 ]
+"55
+[; ;main.c: 55:                     break;
+[e $U 142  ]
+"57
+[; ;main.c: 57:             case 7:
+[e :U 154 ]
+"58
+[; ;main.c: 58:                     k1(0);
+[e ( _k1 (1 -> 0 `i ]
+"59
+[; ;main.c: 59:                     k2(0);
+[e ( _k2 (1 -> 0 `i ]
+"60
+[; ;main.c: 60:                     k3(0);
+[e ( _k3 (1 -> 0 `i ]
+"61
+[; ;main.c: 61:                     estado = 2;
+[e = _estado -> 2 `i ]
+"62
+[; ;main.c: 62:                     break;
+[e $U 142  ]
+"64
+[; ;main.c: 64:         }
+}
+[e $U 142  ]
+[e :U 143 ]
+[e [\ _estado , $ -> 0 `i 144
+ , $ -> 1 `i 145
+ , $ -> 2 `i 146
+ , $ -> 3 `i 148
+ , $ -> 4 `i 149
+ , $ -> 5 `i 150
+ , $ -> 6 `i 152
+ , $ -> 7 `i 154
+ 142 ]
+[e :U 142 ]
+"65
+[; ;main.c: 65:     }
 }
 [e :U 139 ]
-"8
-[; ;delay.c: 8:     while ( t )
-[e $ != _t -> -> 0 `i `ui 140  ]
+[e $U 140  ]
 [e :U 141 ]
-"13
-[; ;delay.c: 13: }
+"66
+[; ;main.c: 66: }
 [e :UE 138 ]
 }

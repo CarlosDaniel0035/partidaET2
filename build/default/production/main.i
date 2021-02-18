@@ -2522,22 +2522,22 @@ extern __bank0 __bit __timeout;
 void delay(unsigned int t );
 # 3 "main.c" 2
 
+# 1 "./contatoresebotoes.h" 1
 
-int contatores_init (void)
-{
-    TRISDbits.TRISD4 = 0;
-    TRISDbits.TRISD5 = 0;
-    TRISDbits.TRISD6 = 0;
-    PORTDbits.RD4 = 0;
-    PORTDbits.RD5 = 0;
-    PORTDbits.RD6 = 0;
-}
-int botoes_init (void)
-{
-    TRISDbits.TRISD0 = 1;
-    TRISDbits.TRISD1 = 1;
-}
 
+
+void botoes_init (void);
+void contatores_init (void);
+void k1 (int x);
+void k2 (int x);
+void k3 (int x);
+int s1 (void);
+int s0 (void);
+# 4 "main.c" 2
+
+
+
+void main (void)
 {
     int estado = 0;
     int t;
@@ -2546,41 +2546,53 @@ int botoes_init (void)
         switch ( estado )
         {
             case 0:
+
                     estado = 1;
                     break;
 
             case 1:
-
+                    contatores_init();
+                    botoes_init();
+                    estado = 2;
                     break;
 
             case 2:
-
+                    if(s1() == 1)
+                        estado = 3;
                     break;
-
             case 3:
-
+                    k1(1);
+                    k2(1);
+                    k3(0);
+                    estado = 4;
                     break;
 
             case 4:
-
+                    t = 3000;
+                    estado = 5;
                     break;
 
             case 5:
-
+                    delay(1);
+                    --t;
+                    if (t <= 0)
+                        estado = 6;
                     break;
 
             case 6:
-
+                    k1(1);
+                    k2(0);
+                    k3(1);
+                    if (s0() ==1)
+                        estado = 7;
                     break;
 
             case 7:
-
+                    k1(0);
+                    k2(0);
+                    k3(0);
+                    estado = 2;
                     break;
-
-            case 8:
-
-                    break;
-
 
         }
     }

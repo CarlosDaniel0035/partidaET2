@@ -1,4 +1,4 @@
-# 1 "delay.c"
+# 1 "contatoresebotoes.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "delay.c" 2
+# 1 "contatoresebotoes.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2491,7 +2491,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 2 3
-# 1 "delay.c" 2
+# 1 "contatoresebotoes.c" 2
 
 # 1 "./config.h" 1
 
@@ -2513,22 +2513,48 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 2 "delay.c" 2
-
-# 1 "./delay.h" 1
+# 2 "contatoresebotoes.c" 2
 
 
 
-void delay(unsigned int t );
-# 3 "delay.c" 2
 
 
-void delay(unsigned int t )
 
+
+
+void botoes_init (void)
 {
-    while ( t )
-    {
-        _delay((unsigned long)((1)*(4000000/4000.0)));
-        --t;
-    }
+    TRISDbits.TRISD0 = 1;
+    TRISDbits.TRISD1 = 1;
+}
+
+void contatores_init (void)
+{
+    TRISDbits.TRISD4 = 0;
+    TRISDbits.TRISD5 = 0;
+    TRISDbits.TRISD6 = 0;
+    PORTDbits.RD4 = 0;
+    PORTDbits.RD5 = 0;
+    PORTDbits.RD6 = 0;
+}
+
+void k1 (int x)
+{
+    PORTDbits.RD6 = x;
+}
+void k2 (int x)
+{
+    PORTDbits.RD5 = x;
+}
+void k3 (int x)
+{
+    PORTDbits.RD4 = x;
+}
+int s1 (void)
+{
+   return (PORTDbits.RD1);
+}
+int s0 (void)
+{
+   return (PORTDbits.RD0);
 }
